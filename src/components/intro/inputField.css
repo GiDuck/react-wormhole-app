@@ -1,0 +1,19 @@
+.inputWrapper{
+    font-size : 24px;
+}
+
+.inputWrapper > label{
+    color : white;
+    margin-right : 1rem;
+}
+
+.inputWrapper > input{
+    width : 20vw;
+    height : 30px;
+    border-radius: 30px;
+    outline: none;
+    border-style : none;
+    text-align: right;
+    padding-right: 1rem;
+}
+
