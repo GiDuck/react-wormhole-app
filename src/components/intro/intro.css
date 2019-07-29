@@ -1,9 +1,18 @@
-.wrapper{
-    width : 100%;
+.introBackground{
+
+    width : 100vw;
     height : 100vh;
+    display: flex;
     background-image: url("/rocket-launch.jpg");
-    background-size : contain;
+    background-size : cover;
     background-repeat: no-repeat;
-    text-align: center;
-    
+    background-position: center;
+    align-items : center;
+    justify-content: center;
+
+}
+
+.inputFieldWrapper{
+    display: flex;
+    flex-direction: column;
 }

@@ -1,14 +1,21 @@
 .inputWrapper{
+    display: flex;
+    min-width: 30vw;
+    padding : 10px;
     font-size : 24px;
+
+    
+    
 }
 
 .inputWrapper > label{
     color : white;
     margin-right : 1rem;
+    flex : 3;
 }
 
 .inputWrapper > input{
-    width : 20vw;
+    flex : 7;
     height : 30px;
     border-radius: 30px;
     outline: none;

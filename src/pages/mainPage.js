@@ -1,8 +1,8 @@
 import React from 'react';
-
-const MainPage = () => {
+import Main from '../components/main/Main';
+const MainPage = ({location, match, history}) => {
     return (
-        <div>Hello I am main page</div>
+        <Main location = {location} match = {match} history = {history}/>
     );
 };
 

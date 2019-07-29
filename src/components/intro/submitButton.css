@@ -1,0 +1,14 @@
+.submitButton{
+
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-image: url("/rocket.png");
+    cursor : pointer;
+    margin-left : 1rem;
+}
+
+.submitButton:hover{
+    opacity: 0.7;
+}
+

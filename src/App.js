@@ -6,7 +6,7 @@ function App() {
   return (
     <React.Fragment>
       <Route exact path="/" component={IntroPage}/>
-      <Route path="/main" component={MainPage}/>
+      <Route exact path="/main" component={MainPage}/>
     </React.Fragment>
   );
 }

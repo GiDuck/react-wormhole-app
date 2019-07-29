@@ -4,7 +4,7 @@ const InputField = (props) => {
     return (
     <div className="inputWrapper">
         <label >{props.title} : </label>
-        <input key={props.key} type={props.inputType} placeholder={props.placeholder} />
+        <input key={props.ide} type={props.inputType} placeholder={props.placeholder} onChange={props.onChangedHandler}/>
     </div>
     );
 }
