@@ -42,6 +42,9 @@ const inputDatas = props => [
   },
 ];
 
+//입력값을 다음 페이지로 넘기기전 유효성을 검사한다.
+//number의 경우 여기서는 양의 정수,
+//array의 경우는 우주선들을 담는 배열으로 0이상의 최대 하중을 넘지 않는 수만 가능.
 const validate = (type, value, compareValue) => {
   switch (type) {
     case 'number':
@@ -56,7 +59,7 @@ const validate = (type, value, compareValue) => {
           .map(weight => {
             return +weight;
           })
-          .filter(weight => !weight || weight < 0 || weight > compareValue);
+          .filter(weight => !weight || weight < 1 || weight > compareValue);
         if (weightsArr.length > 0) return false;
         return true;
       }

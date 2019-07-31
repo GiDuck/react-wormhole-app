@@ -6,6 +6,14 @@ import DashBoard from './DashBoard';
 import Tunnel from './Tunnel';
 
 class Main extends React.Component {
+  /*
+    startShip : 시작지점에서 대기중인 우주선들
+    endShip : 웜홀을 통과해서 종료지점에서 대기중인 우주선들
+    acrossShips : 웜홀을 통과중인 우주선들, 빈 칸이면 -1로 표현한다.
+    time : 지난 시간 (sec)
+    tunnel_current_weight : 현재 웜홀을 통과중인 우주선들의 무게합 
+  */
+
   state = {
     startShips: [],
     endShips: [],
@@ -14,7 +22,9 @@ class Main extends React.Component {
     tunnel_current_weight: 0,
   };
 
+  //반복해서 우주선들을 옮겨주는 함수
   looper = () => {
+    //현재 웜홀이 비었는지 확인하는 함수
     const IsEmptyShipsOnTunnel = () => {
       let isEmpty = true;
       for (let i = 0; i < this.state.acrossShips.length; ++i) {
@@ -36,6 +46,7 @@ class Main extends React.Component {
     }, 1000);
   };
 
+  //출발 대기지점 -> 웜홀로 우주선을 출발시키는 함수
   takeoff = () => {
     let { startShips, acrossShips } = this.state;
 
@@ -47,6 +58,7 @@ class Main extends React.Component {
     }
   };
 
+  //웜홀 내의 우주선을 이동시키는 함수
   shiftShipsInTunnel = () => {
     let { acrossShips, endShips, tunnel_current_weight } = this.state;
 
@@ -62,6 +74,7 @@ class Main extends React.Component {
     this.setState({ acrossShips: acrossShips });
   };
 
+  // 우주선이 출발해도 되는지 확인하는 함수 ( 다음 우주선이 출발하면 웜홀의 최대 중량을 넘지 않는지 확인 )
   controlTakeoff = shipWeight => {
     const { tunnel_current_weight } = this.state;
     const { tunnel_limit_weight } = this.props;
@@ -84,6 +97,7 @@ class Main extends React.Component {
         startShips: startShips,
         acrossShips: new Array(+tunnel_length).fill(-1),
       });
+  
       this.looper();
     })();
   }
@@ -119,12 +133,11 @@ class Main extends React.Component {
     return (
       <div className="mainComponent">
         <div className="start">
-          <DeckPanel key="startPoint" shipsCount={startShips.length} />
+          <DeckPanel shipsCount={startShips.length} />
         </div>
         <div className="center">
           <div className="upper">
             <DashBoard
-              key="globalInfo"
               title="Global Info"
               content={globalInfoContent}
             />
@@ -134,14 +147,13 @@ class Main extends React.Component {
           </div>
           <div className="lower">
             <DashBoard
-              key="currentInfo"
               title="Current Info"
               content={currentInfoContent}
             />
           </div>
         </div>
         <div className="end">
-          <DeckPanel key="endPoint" shipsCount={endShips.length} />
+          <DeckPanel shipsCount={endShips.length} />
         </div>
       </div>
     );
