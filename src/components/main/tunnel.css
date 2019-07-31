@@ -1,0 +1,12 @@
+.tunnel {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section {
+  flex: 1;
+}

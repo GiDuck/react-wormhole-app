@@ -1,0 +1,6 @@
+.spaceship {
+  width: 100px;
+  height: 100px;
+  background-image: url('/spaceship.png');
+  background-size: cover;
+}

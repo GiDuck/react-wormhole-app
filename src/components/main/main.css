@@ -1,0 +1,44 @@
+.mainComponent {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-image: url('/space-background.jpg');
+  background-attachment: cover;
+}
+
+.mainComponent > .start {
+  flex: 1;
+}
+
+.mainComponent > .end {
+  flex: 1;
+}
+
+.mainComponent > .center {
+  display: flex;
+  flex-direction: column;
+  flex: 8;
+}
+
+.center > .upper {
+  flex: 4;
+  background-color: rgba(128, 0, 128, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.center > .middle {
+  flex: 2;
+}
+
+.center > .lower {
+  flex: 4;
+  background-color: rgba(240, 128, 128, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

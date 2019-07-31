@@ -1,0 +1,17 @@
+.dashBoard {
+  color: white;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.dashBoard > .title {
+  font-size: 26pt;
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
+  padding-bottom: 2rem;
+}
+.dashBoard > .content {
+  font-size: 18pt;
+  padding: 8px;
+}

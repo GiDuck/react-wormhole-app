@@ -5,11 +5,15 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
 # production
 /build
+
+#prettier
+.prettierrc
 
 # misc
 .DS_Store
