@@ -104,6 +104,7 @@ class Main extends React.Component {
 
   componentWillMount() {
     const { history, isValidated } = this.props;
+    history.go(history.length-1);
     if (isValidated === false) {
       alert('잘못된 접근입니다.');
       history.push('/');
