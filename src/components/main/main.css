@@ -5,6 +5,7 @@
   flex-direction: row;
   background-image: url('/space-background.jpg');
   background-attachment: cover;
+  background-repeat: no-repeat;
 }
 
 .mainComponent > .start {
