@@ -10,6 +10,7 @@ import {
   validated,
 } from '../../stores/globalField';
 import CustomRegex from '../../lib/customRegex';
+import propTypes from 'prop-types';
 
 const inputDatas = props => [
   {
@@ -48,7 +49,7 @@ const inputDatas = props => [
 const validate = (type, value, compareValue) => {
   switch (type) {
     case 'number':
-      if (CustomRegex.onlyPositiveInteger.test(value) && +value > 0) {
+      if (CustomRegex.onlyPositiveInteger.test(value) && value > 0) {
         return true;
       }
       return false;
@@ -103,7 +104,7 @@ class Intro extends React.Component {
       <div className="introBackground">
         <div className="inputFieldWrapper">
           {inputDatas(this.props).map(input => {
-            return <InputField {...input} />;
+            return <InputField key={input.ide} {...input} />;
           })}
         </div>
         <SubmitButton clickHandler={this.submitBtnHandler} />
@@ -111,6 +112,17 @@ class Intro extends React.Component {
     );
   }
 }
+
+Intro.propTypes = {
+  tunnel_length: propTypes.number,
+  tunnel_limit_weight: propTypes.number,
+  ship_weights: propTypes.string,
+  isValidated: propTypes.bool,
+  setTunnelLength: propTypes.func,
+  setTunnelLimitWeight: propTypes.func,
+  setShipWeights: propTypes.func,
+  validated: propTypes.func,
+};
 
 export default connect(
   //mapStateToProps 함수에서 현재 유저가 값을 정확하게 입력하여 검증 되었는지 확인 한 후에 main 페이지로 넘어가게 한다.

@@ -4,6 +4,7 @@ import './main.css';
 import DeckPanel from './DeckPanel';
 import DashBoard from './DashBoard';
 import Tunnel from './Tunnel';
+import propTypes from 'prop-types';
 
 class Main extends React.Component {
   /*
@@ -22,7 +23,7 @@ class Main extends React.Component {
     tunnel_current_weight: 0,
   };
 
-  //반복해서 우주선들을 옮겨주는 함수
+  //반복해서 실행하는 함수
   looper = () => {
     //현재 웜홀이 비었는지 확인하는 함수
     const IsEmptyShipsOnTunnel = () => {
@@ -37,7 +38,7 @@ class Main extends React.Component {
     let timer = setInterval(() => {
       this.shiftShipsInTunnel();
       this.takeoff();
-      this.setState({ time: ++this.state.time });
+      this.setState({ time: this.state.time + 1 });
 
       if (this.state.startShips.length === 0 && IsEmptyShipsOnTunnel()) {
         clearInterval(timer);
@@ -87,28 +88,25 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    (async () => {
-      const { ship_weights, tunnel_length } = this.props;
-      let startShips = ship_weights.split(',');
-      startShips = startShips.map(el => {
-        return +el;
-      });
-      await this.setState({
-        startShips: startShips,
-        acrossShips: new Array(+tunnel_length).fill(-1),
-      });
-  
-      this.looper();
-    })();
-  }
-
-  componentWillMount() {
-    const { history, isValidated } = this.props;
-    history.go(history.length-1);
+    const { history, isValidated, ship_weights, tunnel_length } = this.props;
     if (isValidated === false) {
       alert('잘못된 접근입니다.');
       history.push('/');
-      return;
+    } else if (isValidated === true) {
+      history.go(history.length - 1);
+
+      (async () => {
+        let startShips = ship_weights.split(',');
+        startShips = startShips.map(el => {
+          return +el;
+        });
+        await this.setState({
+          startShips: startShips,
+          acrossShips: new Array(+tunnel_length).fill(-1),
+        });
+
+        this.looper();
+      })();
     }
   }
 
@@ -134,32 +132,33 @@ class Main extends React.Component {
     return (
       <div className="mainComponent">
         <div className="start">
-          <DeckPanel shipsCount={startShips.length} />
+          <DeckPanel title="startPoint" shipsCount={startShips.length} />
         </div>
         <div className="center">
           <div className="upper">
-            <DashBoard
-              title="Global Info"
-              content={globalInfoContent}
-            />
+            <DashBoard title="Global Info" content={globalInfoContent} />
           </div>
           <div className="middle">
             <Tunnel acrossShips={acrossShips} />
           </div>
           <div className="lower">
-            <DashBoard
-              title="Current Info"
-              content={currentInfoContent}
-            />
+            <DashBoard title="Current Info" content={currentInfoContent} />
           </div>
         </div>
         <div className="end">
-          <DeckPanel shipsCount={endShips.length} />
+          <DeckPanel title="endPoint" shipsCount={endShips.length} />
         </div>
       </div>
     );
   }
 }
+
+Main.propTypes = {
+  tunnel_length: propTypes.number,
+  tunnel_limit_weight: propTypes.number,
+  ship_weights: propTypes.string,
+  isValidated: propTypes.bool,
+};
 
 export default connect(
   ({ globalField }) => ({
