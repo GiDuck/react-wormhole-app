@@ -23,13 +23,13 @@ export default function globalField(state = initalState, action) {
     case TUNNEL_LENGTH:
       return {
         ...state,
-        tunnel_length: +action.length,
+        tunnel_length: action.length,
       };
 
     case TUNNEL_LIMIT_WEIGHT:
       return {
         ...state,
-        tunnel_limit_weight: +action.weight,
+        tunnel_limit_weight: action.weight,
       };
 
     case SHIP_WEIGHTS:

@@ -22,7 +22,7 @@ class Main extends React.Component {
     time: 0,
     tunnel_current_weight: 0,
   };
-
+  
   //반복해서 실행하는 함수
   looper = () => {
     //현재 웜홀이 비었는지 확인하는 함수
@@ -35,14 +35,15 @@ class Main extends React.Component {
       return isEmpty;
     };
 
-    let timer = setInterval(() => {
+
+    this.timer = setInterval(() => {
       this.shiftShipsInTunnel();
       this.takeoff();
       this.setState({ time: this.state.time + 1 });
 
       if (this.state.startShips.length === 0 && IsEmptyShipsOnTunnel()) {
-        clearInterval(timer);
-        timer = null;
+        clearInterval(this.timer);
+        this.timer = null;
       }
     }, 1000);
   };
@@ -108,6 +109,11 @@ class Main extends React.Component {
         this.looper();
       })();
     }
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timer);
+    this.timer = null;
   }
 
   render() {

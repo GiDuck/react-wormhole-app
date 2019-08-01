@@ -19,7 +19,7 @@ const inputDatas = props => [
     placeholder: '웜홀의 길이를 입력하세요.',
     inputType: 'number',
     onChangedHandler: e => {
-      props.setTunnelLength(e.target.value);
+      props.setTunnelLength(+e.target.value);
     },
   },
   {
@@ -28,7 +28,7 @@ const inputDatas = props => [
     placeholder: '웜홀이 버틸 수 있는 총 무게를 설정하세요.',
     inputType: 'number',
     onChangedHandler: e => {
-      props.setTunnelLimitWeight(e.target.value);
+      props.setTunnelLimitWeight(+e.target.value);
     },
   },
 
