@@ -103,7 +103,7 @@ class Main extends React.Component {
         });
         await this.setState({
           startShips: startShips,
-          acrossShips: new Array(+tunnel_length).fill(-1),
+          acrossShips: new Array(tunnel_length).fill(-1),
         });
 
         this.looper();
